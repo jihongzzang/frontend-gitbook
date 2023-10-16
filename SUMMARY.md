@@ -2,7 +2,7 @@
 
 ## 1주차
 
-- 개발환경
+- [개발환경](README.md)
 
   - [Node.js](/developementSetting/nodejs.md)
 

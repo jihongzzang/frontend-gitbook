@@ -129,12 +129,14 @@ module.exports = {
 
 **`parcel` 설치**
 
-```json
+```
 $ npm i -D parcel
 
 change package.json scripts
 change main => source in package.json
+```
 
+```json
 "source": "index.html",
 
 "scripts": {

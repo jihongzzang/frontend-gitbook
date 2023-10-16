@@ -1,12 +1,13 @@
 # Table of contents
 
-## GitBook
+## 1주차
 
-- [Git Book 가이드](README.md)
+- 개발환경
 
-- [GitHub과 연동하기](/integration/integration-with-github.md)
-  - [PR 날리기](/integration/pull-request.md)
+  - [Node.js](/developementSetting/nodejs.md)
 
-## 효과적인 학습법
+  - [NPM(Node Package Manager)](/developementSetting/npm.md)
 
-- [미라클 모닝](miracle-morning.md)
+  - [ES Modules vs CommonJS](/developementSetting/esVsJs.md)
+
+  - [개발환경 세팅해보기](/developementSetting/makeEnv.md)

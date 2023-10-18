@@ -12,18 +12,24 @@
 
   - [개발환경 세팅해보기](/developementSetting/makeEnv.md)
 
+- [TypeScript](README.md)
+
+  - [타입스크립트란](/typescript/why.md)
+
+  - [Type](/typescript/type.md)
+
+  - [Interface](/typescript/interface.md)
+
+  - [타입 추론](/typescript/typeInference.md)
+
+  - [연산자를 이용한 타입](/typescript/unionIntersection.md)
+
+  - [Optional Parameter](/typescript/optionalParameter.md)
+
+  - [Generic](/typescript/generic.md.md)
+
 - [Parcel, ES Lint](README.md)
 
   - [Parcel](/eslintParcel/parcel.md)
 
   - [ES Lint](/eslintParcel/eslint.md)
-
-<!-- - [Typescript](README.md)
-
-  - [Interface vs Type](/typescript/intefaceVsType.md)
-
-  - [타입 추론](/typescript/typeAlias.md)
-
-  - [Union Type vs Intersection Type](/typescript/unionIntersection.md)
-
-  - [Optional Parameter](/typescript/optionalParameter.md) -->

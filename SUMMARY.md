@@ -12,7 +12,13 @@
 
   - [개발환경 세팅해보기](/developementSetting/makeEnv.md)
 
-- [Typescript](README.md)
+- [Parcel, ES Lint](README.md)
+
+  - [Parcel](/eslintParcel/parcel.md)
+
+  - [ES Lint](/eslintParcel/eslint.md)
+
+<!-- - [Typescript](README.md)
 
   - [Interface vs Type](/typescript/intefaceVsType.md)
 
@@ -20,10 +26,4 @@
 
   - [Union Type vs Intersection Type](/typescript/unionIntersection.md)
 
-  - [Optional Parameter](/typescript/optionalParameter.md)
-
-- [Parcel, ES Lint](README.md)
-
-  - [Parcel](/eslintParcel/parcel.md)
-
-  - [ES Lint](/eslintParcel/eslint.md)
+  - [Optional Parameter](/typescript/optionalParameter.md) -->

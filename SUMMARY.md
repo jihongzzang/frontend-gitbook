@@ -12,8 +12,6 @@
 
   - [개발환경 세팅해보기](/developementSetting/makeEnv.md)
 
-- [TypeScript](README.md)
-
   - [타입스크립트란](/typescript/why.md)
 
   - [Type](/typescript/type.md)
@@ -27,8 +25,6 @@
   - [Optional Parameter](/typescript/optionalParameter.md)
 
   - [Generic](/typescript/generic.md.md)
-
-- [Parcel, ES Lint](README.md)
 
   - [Parcel](/eslintParcel/parcel.md)
 

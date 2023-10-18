@@ -22,4 +22,8 @@
 
   - [Optional Parameter](/typescript/optionalParameter.md)
 
-- [Parcel ESLINT](/eslintParcel/eslintParcel.md)
+- [Parcel, ES Lint](README.md)
+
+  - [Parcel](/eslintParcel/parcel.md)
+
+  - [ES Lint](/eslintParcel/eslint.md)

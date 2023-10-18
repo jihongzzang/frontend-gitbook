@@ -22,9 +22,7 @@
 
   - [연산자를 이용한 타입](/typescript/unionIntersection.md)
 
-  - [Optional Parameter](/typescript/optionalParameter.md)
-
-  - [Generic](/typescript/generic.md.md)
+  - [Generic](/typescript/generic.md)
 
   - [Parcel](/eslintParcel/parcel.md)
 

@@ -142,6 +142,8 @@ $ npm i -D parcel
 
 change package.json scripts
 change main => source in package.json
+
+$ npm i -D parcel-reporter-static-files-copy
 ```
 
 ```json

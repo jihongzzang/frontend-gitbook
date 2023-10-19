@@ -28,7 +28,7 @@
 
   - [ES Lint](/eslintParcel/eslint.md)
 
-  - [testingLibrary](/testinglibrary/testingLibrary.md)
+  - [Testing-Library](/testinglibrary/testingLibrary.md)
 
   - [Describe-Context-It](/testinglibrary/describeContextIt.md)
 

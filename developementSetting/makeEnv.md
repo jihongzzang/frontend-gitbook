@@ -1,20 +1,24 @@
-## 개발환경 세팅해보기
+# 개발환경 세팅해보기
 
 **`NPM` 시작**
 
-```
+```node
+시작
+
 $ npm init or $ npm init-y
 ```
 
 **`.gitignore` 를 통해 깃헙에 관리하지 않을 파일들 설정**
 
-```
+```node
+파일생성
+
 $ touch .gitignore
 ```
 
 **`typescript` 세팅**
 
-```
+```node
 $ npm i -D typescript
 $ npx tsc —init
 
@@ -25,7 +29,7 @@ jsx on
 
 **`eslint` 세팅**
 
-```
+```node
 $ npm i -D eslint
 $ npx eslint --init
 
@@ -42,7 +46,7 @@ $ npx eslint --init
 
 **`airbnb lint` 세팅을 위한 추가 패키지 설치**
 
-```
+```node
 $ npm i -D
 eslint-config-airbnb
 eslint-plugin-import
@@ -72,20 +76,22 @@ plugins: ['react', '@typescript-eslint'],
 
 **`.eslintignore` 에 마찬가지로 관리하지 않을 파일 설정**
 
-```
+```node
+파일생성
 $ touch .eslintignore
 ```
 
 **`react` , `typescript` 설치**
 
-```
+```node
+리액트 설치
 $ npm i react react-dom
 $ npm i -D @types/react @types/react-dom
 ```
 
 **`jest` 설치**
 
-```
+```node
 $ npm i -D
 jest
 @types/jest
@@ -103,7 +109,6 @@ $ touch jest.config.js
 
 module.exports = {
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   transform: {
     '^.+\\.(t|j)sx?$': [
       '@swc/jest',
@@ -125,11 +130,14 @@ module.exports = {
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
 }
+
+$ touch jest-setup.js
+import 원하는 모둘
 ```
 
 **`parcel` 설치**
 
-```
+```node
 $ npm i -D parcel
 
 change package.json scripts
@@ -150,9 +158,18 @@ change main => source in package.json
   },
 ```
 
+**`parcelrc.`작성**
+
+```json
+{
+  "extends": ["@parcel/config-default"],
+  "reporters": ["...", "parcel-reporter-static-files-copy"]
+}
+```
+
 **`코드테스팅`을 위한 파일 생성**
 
-```
+```js
 * index.html
 * src/main.tsx
 * src/App.tsx

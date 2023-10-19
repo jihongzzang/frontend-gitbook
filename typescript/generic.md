@@ -153,5 +153,32 @@ function getProperty<T, O extends keyof T>(obj: T, key: O) {
 let obj = { a: 1, b: 2, c: 3 };
 
 getProperty(obj, 'a'); // Okay
-getProperty(obj, 'z'); // error: "z"는 "a", "b", "c" 속성에 해당하지 않습니다.
+getProperty(obj, 'z'); // error: "z"는 "a", "b", "c" 속성에 해당하지 않는다..
+```
+
+```ts
+interface Array<T> {
+  forEach(
+    callbackfn: (value: T, index: number, array: T[]) => void,
+    thisArg?: any
+  ): void;
+
+  map<U>(
+    callbackfn: (value: T, index: number, array: T[]) => U,
+    thisArg?: any
+  ): U[];
+
+  filter<S extends T>(
+    predicate: (value: T, index: number, array: T[]) => value is S,
+    thisArg?: any
+  ): S[];
+}
+
+interface Arr<T> {
+  forEach(callback: (item: T) => void): void;
+
+  map<S>(callback: (value: T) => S): S[];
+
+  filter<S extends T>(callback: (v: T) => v is S): S[];
+}
 ```

@@ -16,11 +16,11 @@
 
 - Node.js 버젼 관리도구
 
-**nvm 설치**
+nvm 설치
 
 `$ brew install nvm`
 
-**nvm 을 환경변수로 등록 과정 (bash or zsh)**
+nvm 을 환경변수로 등록 과정 (bash or zsh)
 
 `$ vi ~/.bash_profile`
 
@@ -41,15 +41,15 @@ export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 ```
 
-**환경 변수 적용**
+환경 변수 적용
 
 `$ source ~/.bash_profile`
 
 `$ source ~/.zshrc`
 
-**nvm 자주 쓰는 명령어**
+nvm 자주 쓰는 명령어
 
-```
+```node
 nvm install ${node_version}
 nvm install --lts // lts 최신버전
 nvm ls
@@ -58,4 +58,18 @@ nvm use ${node_version}
 
 nvm alias default node
 nvm alias default version
+```
+
+## npm
+
+Node Packaged Manager의 약자
+
+- 단 몇 줄의 명령어로 기존에 공개된 모듈들을 설치하고 활용
+
+```node
+실행
+$ npm init
+
+패키지 설치
+$ npm install <package name>
 ```

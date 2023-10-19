@@ -1,6 +1,6 @@
 # ESLint
 
-[ESLint](https://eslint.org/)
+[ESLint Official Site](https://eslint.org/)
 
 - ES는 Ecma Script로서 쉽게말해 표준 Javascript
 
@@ -14,11 +14,11 @@
 
 ## env
 
-- env는 eslint를 적용할 환경을 설정하는 부분으로, 쉽게 생각해서 프로젝트가 어떤 환경에서 실행되는 코드인지를 설정하는 것입니다.
+- env는 eslint를 적용할 환경을 설정하는 부분으로, 쉽게 생각해서 프로젝트가 어떤 환경에서 실행되는 코드인지를 설정하는 것
 
 ## extends
 
-- extends는 설정을 특정(specify)하는 문자열이거나, 이전 설정을 확장(extends)하는 추가적인 설정에 대한 문자열 리스트입니다.
+- extends는 설정을 특정(specify)하는 문자열이거나, 이전 설정을 확장(extends)하는 추가적인 설정에 대한 문자열 리스트
 
 ## parser
 
@@ -30,7 +30,7 @@
 
 ## plugins
 
-- ESLint는 다양한 설정을 위한 외부 플러그인을 지원하는데, 사용하기 전에 패키지 다운로드가 필요합니다.
+- ESLint는 다양한 설정을 위한 외부 플러그인을 지원하는데, 사용하기 전에 패키지 다운로드가 필요
 
 ## rules
 

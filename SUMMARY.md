@@ -6,9 +6,7 @@
 
   - [Node.js](/developementSetting/nodejs.md)
 
-  <!-- - [NPM(Node Package Manager)](/developementSetting/npm.md) -->
-
-  <!-- - [ES Modules vs CommonJS](/developementSetting/esVsJs.md) -->
+  - [ES Modules vs CommonJS](/developementSetting/esVsJs.md)
 
   - [개발환경 세팅해보기](/developementSetting/makeEnv.md)
 
@@ -24,6 +22,14 @@
 
   - [Generic](/typescript/generic.md)
 
+  - [React](/react/react.md)
+
   - [Parcel](/eslintParcel/parcel.md)
 
   - [ES Lint](/eslintParcel/eslint.md)
+
+  - [testingLibrary](/testinglibrary/testingLibrary.md)
+
+  - [Describe-Context-It](/testinglibrary/describeContextIt.md)
+
+  - [React-Testing-Library](/testinglibrary/reactTestingLibrary.md)

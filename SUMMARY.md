@@ -30,7 +30,7 @@
 
 - [React](/react/react.md)
 
-- [React-deep](/react/react_deep.md)
+- [React-With-JSX](/react/react_deep.md)
 
 ## Test-Driven-Developement
 

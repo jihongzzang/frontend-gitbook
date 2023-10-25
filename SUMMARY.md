@@ -1,35 +1,41 @@
 # Table of contents
 
-## 1주차
+## 개발환경
 
-- [개발환경](README.md)
+- [Node.js](/developementSetting/nodejs.md)
 
-  - [Node.js](/developementSetting/nodejs.md)
+- [ES Modules vs CommonJS](/developementSetting/esVsJs.md)
 
-  - [ES Modules vs CommonJS](/developementSetting/esVsJs.md)
+- [개발환경 세팅해보기](/developementSetting/makeEnv.md)
 
-  - [개발환경 세팅해보기](/developementSetting/makeEnv.md)
+- [Parcel](/eslintParcel/parcel.md)
 
-  - [타입스크립트란](/typescript/why.md)
+- [ES Lint](/eslintParcel/eslint.md)
 
-  - [Type](/typescript/type.md)
+## TypeScript
 
-  - [Interface](/typescript/interface.md)
+- [TypeScript](/typescript/why.md)
 
-  - [타입 추론](/typescript/typeInference.md)
+- [Type](/typescript/type.md)
 
-  - [연산자를 이용한 타입](/typescript/unionIntersection.md)
+- [Interface](/typescript/interface.md)
 
-  - [Generic](/typescript/generic.md)
+- [타입 추론](/typescript/typeInference.md)
 
-  - [React](/react/react.md)
+- [연산자를 이용한 타입](/typescript/unionIntersection.md)
 
-  - [Parcel](/eslintParcel/parcel.md)
+- [Generic](/typescript/generic.md)
 
-  - [ES Lint](/eslintParcel/eslint.md)
+## React
 
-  - [Testing-Library](/testinglibrary/testingLibrary.md)
+- [React](/react/react.md)
 
-  - [Describe-Context-It](/testinglibrary/describeContextIt.md)
+- [React-deep](/react/react_deep.md)
 
-  - [React-Testing-Library](/testinglibrary/reactTestingLibrary.md)
+## Test-Driven-Developement
+
+- [Testing-Library](/testinglibrary/testingLibrary.md)
+
+- [Describe-Context-It](/testinglibrary/describeContextIt.md)
+
+- [React-Testing-Library](/testinglibrary/reactTestingLibrary.md)

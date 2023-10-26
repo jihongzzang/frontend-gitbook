@@ -26,6 +26,10 @@
 
 - [Generic](/typescript/generic.md)
 
+## Effective TypeSCript
+
+- [1장](/effectiveTypeScript/first.md)
+
 ## React
 
 - [React](/react/react.md)

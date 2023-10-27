@@ -28,7 +28,9 @@
 
 ## Effective TypeSCript
 
-- [1장](/effectiveTypeScript/first.md)
+- [Item 1 - 5](/effectiveTypeScript/first.md)
+
+- [Item 6 - 10](/effectiveTypeScript/second.md)
 
 ## React
 

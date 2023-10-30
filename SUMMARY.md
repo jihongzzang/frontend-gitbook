@@ -36,6 +36,8 @@
 
 - [Item 16 - 18](/effectiveTypeScript/fourth.md)
 
+- [Item 19 - 22](/effectiveTypeScript/fifth.md)
+
 ## React
 
 - [React](/react/react.md)

@@ -386,3 +386,72 @@ async function getUser(userId: string) {
 - 콜백 보다는 프로미스를 사용하자.
 - 가능하면 `async` `await`를 사용하는 것이 좋다.
 - 어떤 함수가 프로미스를 반환하면 `async`로 선언하는 것이 좋다.
+
+### Item 26 타입추론에 문맥이 어떻게 사용되는지 이해하기
+
+- 타입추론해서 단순히 값만 고려하지 않는다.
+
+```ts
+// 인라인 형태
+setLanguate('JavaScript');
+
+// 참조 형태
+let language = 'JavaScript';
+setLanguage(language);
+
+function setLanguage(lan: string) {
+  /*...*/
+}
+
+setLanguage('JavaScript');
+
+let language = 'JavaScript';
+setLanguage(language);
+
+//모두 정상
+```
+
+```ts
+type Language = 'JavaScript' | 'TypeScript' | 'Python';
+
+function setLanguage(lan: Language) {
+  /*...*/
+}
+
+setLanguage('JavaScript'); //정상
+
+let language = 'JavaScript';
+setLanguage(language); //에러
+
+const language = 'JavaScript';
+setLanguage(language); //정상
+```
+
+- 튜플 사용시 주의점
+
+  - 상수 문맥을 제공하자 `as const` 그러나 타입 정의에 실수가 있다면 호출되는 곳에서 발생하기 때문에 디버깅이 힘듬
+  - 타입 시그니처를 수정할 수 없는 경우라면 타입 구문을 사용하자.
+
+```ts
+function panTo(where: readonly [number, number]) {
+  /*...*/
+}
+```
+
+- 객체 사용시 주의점
+
+  - 타입 선언을 추가하거나 `as const`를 사용해 해결하자
+
+- 콜백 사용시 주의점
+
+  - 콜백을 다른 함수로 전달할 때, 타입스크립트는 콜백의 매개변수 타입추론을 위해 문백을 활용한다.
+
+  - 매개변수에 타입 구문을 추가하자.
+
+  - 전체 함수 표현식에 타입 선언을 적용하자
+
+- 타입추론에서 문백이 어떻게 쓰이는지 주의해서 살펴보자
+
+- 변수를 뽑아서 별도로 선언했을 때 오류가 발생한다면 타입 선언을 추가해야한다.
+
+- 변수가 정말로 상수라면 상수 단언을 사용하자. 그러나 이는 오류가 사용한곳에서 나기때문에 주의하자.

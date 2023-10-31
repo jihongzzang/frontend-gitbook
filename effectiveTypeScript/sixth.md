@@ -124,3 +124,124 @@ pharaoh.start; // 정상 number | undefined
 - 속성을 추가하지 말고 한꺼번에 객체로 만들자
 
 - 객체에 조건부로 속성을 추가하는 방법을 익히자
+
+### Item 24 일관성 있는 별칭 사용하기
+
+```ts
+const borough = { name: 'a', location: [-1, -1] };
+
+const loc = borough.location; // loc 별칭
+
+loc[0] = [10];
+
+borough.location; //[10, -1]
+```
+
+- 별칭을 남발해서 사용하면 흐름을 분석하기 어려움
+
+```ts
+interface Cooridnate {
+  x: number;
+  y: number;
+}
+
+interface BoundingBox {
+  x: [number, number];
+  y: [number, number];
+}
+
+interface Polygon {
+  exterior: Cooridnate[];
+  holes: Cooridnate[][];
+  bbox?: BoundingBox;
+}
+
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  if (polygon.bbox) {
+    if (
+      pt.x < polygon.bbox.x[0] ||
+      pt.x > polygon.bbox.x[1] ||
+      pt.y < polygon.bbox.y[0] ||
+      pt.y > polygon.bbox.y[1]
+    ) {
+      return false;
+    }
+  }
+
+  //...
+}
+
+// 문제없이 동작하지만 리팩토링을 해보자
+
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const box = polygon.bbox; // BoundingBox || undefined
+
+  if (polygon.bbox) {
+    if (
+      pt.x < box.x[0] ||
+      pt.x > box.x[1] || // 객체가 undefined ...
+      pt.y < box.y[0] ||
+      pt.y > box.y[1]
+    ) {
+      return false;
+    }
+  }
+
+  //...
+}
+
+// 동작하지만 편집기에서 오류로 표시된다.
+// 새로운 별칭이 타입스크립트의 제어 흐름분석을 방해했기 때문이다.
+
+// refactoring
+
+// 하지만 box와 bbox는 같은 값인데 다른 이름을 사용함. (일관되지 않음)
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const box = polygon.bbox;
+
+  if (box) {
+    if (
+      pt.x < box.x[0] ||
+      pt.x > box.x[1] ||
+      pt.y < box.y[0] ||
+      pt.y > box.y[1]
+    ) {
+      return false;
+    }
+  }
+
+  //...
+}
+
+// 객체 비구조화를 이용해 간결한 문법으로 일관된 이름을 사용할 수 있다.
+function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
+  const { bbox } = polygon;
+
+  if (bbox) {
+    const { x, y } = bbox;
+    if (pt.x < x[0] || pt.x > x[1] || pt.y < y[0] || pt.y > y[1]) {
+      return false;
+    }
+  }
+
+  //...
+}
+```
+
+- 객체 비구조화를 사용할때 주의 사항
+
+  - 선택적 속성일 경우에 속성 체크가 더 필요하다.
+
+  타입스크립트의 제어 흐름 분석은 지역 변수에는 생각보다 꽤 잘 동작하나 객체 속성에서는 주의해야한다.
+
+```ts
+function fn(p: Polygon) {
+  //...
+}
+```
+
+- 에를들면 해당 속성이 존재할때 해당 속성을 내부 함수에 매개변수로 넣는경우
+- 타입스크립트는 함수가 타입 정제를 무효화 하지 않는다고 가정하나 실제로는 무효화 될 가능성이 있다.
+- 별칭은 타입스크립트가 타입을 좁히는 것을 방해한다. 따라서 변수에 별칭을 사용할때는 일관되게 사용하자.
+- 비구조화 문법을 사용해서 일관된 이름을 사용하자
+- 함수 호출이 객체 속성의 타입 정제를 무효화 할수 있다. (지역변수를 사용하자)

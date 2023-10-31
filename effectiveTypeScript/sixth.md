@@ -232,11 +232,15 @@ function isPointInPolygon(polygon: Polygon, pt: Coordinate) {
 
   - 선택적 속성일 경우에 속성 체크가 더 필요하다.
 
-  타입스크립트의 제어 흐름 분석은 지역 변수에는 생각보다 꽤 잘 동작하나 객체 속성에서는 주의해야한다.
+  타입스크립트의 제어 흐름 분석은 지역 변수에는 생각보다 꽤 잘 동작하나 객체 속성에서는 주의 해야한다.
 
 ```ts
 function fn(p: Polygon) {
+  const { bbox } = p;
   //...
+  if (bbox) {
+    innerFb(p);
+  }
 }
 ```
 
@@ -245,3 +249,140 @@ function fn(p: Polygon) {
 - 별칭은 타입스크립트가 타입을 좁히는 것을 방해한다. 따라서 변수에 별칭을 사용할때는 일관되게 사용하자.
 - 비구조화 문법을 사용해서 일관된 이름을 사용하자
 - 함수 호출이 객체 속성의 타입 정제를 무효화 할수 있다. (지역변수를 사용하자)
+
+### Item 25 비동기 코드에는 콜백 대신 async 함수 사용
+
+```ts
+fetchURL(url1, function (response1) {
+  fetchURL(url2, function (response2) {
+    fetchURL(url3, function (response3) {
+      console.log(1);
+    });
+    console.log(2);
+  });
+  console.log(3);
+});
+
+console.log(4);
+
+// 4, 3, 2, 1
+```
+
+- 콜백지옥 대신 프로미스를 사용하면 더 간결한 코드가 된다.
+
+```ts
+const page1Promise = fetch(url1);
+
+page1Promise
+  .then((response1) => {
+    return fetch(url2);
+  })
+  .then((response2) => {
+    return fetch(url3);
+  })
+  .then((response3) => {
+    //...
+  })
+  .catch((error) => {
+    //...
+  });
+```
+
+- 코드의 중첩도 적어졌고 실행 순서도 코드 순서와 같아졌다.
+
+```ts
+async function fetchPages() {
+  try {
+    const response1 = await fetch(url1);
+    const response2 = await fetch(url2);
+    const response3 = await fetch(url3);
+    //,,,
+  } catch (e) {
+    //...
+  }
+}
+```
+
+- 콜백보다는 프로미스가 코드를 작성하기 쉽다.
+
+- 프로미스가 타입을 추론하기 쉽다.
+
+```ts
+function timeout(millis: number): Promise<never> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject('timeout'), millis);
+  });
+}
+
+async function fetchWithTimeout(url: string, ms: number) {
+  return Promise.race([fetch(url), timeout(ms)]);
+}
+```
+
+- 타입 구문이 없어도 `Promise<Resoponse>` 로 추론이 된다. 공집합 `never`와의 유니온은 아무런 효과가 없기 때문에 모든 타입 추론이 제대로 동작
+
+```ts
+//error logic
+
+const _cache: { [url: string]: string } = {};
+
+function fetchWithCache(url: string, callback: (text: string) => void) {
+  if (url in _cache) {
+    callback(_cache[url]);
+  } else {
+    fetchURL(url, (text) => {
+      _cache[url] = text;
+      callback(text);
+    });
+  }
+}
+
+let requestStatus: 'loading' | 'success' | 'error';
+
+function getUser(userId: string) {
+  fetchWithCache(`${url}/${userId}`, (profile) => {
+    requestStatus = 'success';
+  });
+
+  requestStatus = 'loading';
+}
+
+//getUser를 호출한 후에 값은 온전히 캐시되었는지 여부에 달렸다.
+
+//캐시되어 있지 않다면 Status 는 "success"가 된다.
+
+//캐시되어 있다면 "success"에서 바로 다시 "loading"으로 돌아간다.
+
+//async를 두 함수에 모두 사용하면 일관적인 동작을 강제하게 된다.
+
+async function fetchWithCache(url: string, callback: (text: string) => void) {
+  if (url in _cache) {
+    callback(_cache[url]);
+  }
+  const response = await fetch(url);
+
+  const text = await response.text();
+
+  _cache[url] = text;
+
+  return text;
+}
+
+let requestStatus: 'loading' | 'success' | 'error';
+
+async function getUser(userId: string) {
+  requestStatus = 'loading';
+
+  const profile = await fetchWithCache(`${url}/${userId}`);
+
+  requestStatus = 'success';
+}
+
+// 이렇게 코드가 명백해진다.
+```
+
+- async 함수에서 프로미스를 반환하면 또 다른 프로미스로 래핑되지 않고 `Promise<T>`가 된다.
+
+- 콜백 보다는 프로미스를 사용하자.
+- 가능하면 `async` `await`를 사용하는 것이 좋다.
+- 어떤 함수가 프로미스를 반환하면 `async`로 선언하는 것이 좋다.

@@ -38,13 +38,17 @@
 
 - [Item 19 - 22](/effectiveTypeScript/fifth.md)
 
-- [Item 23 - 27](/effectiveTypeScript/sixth.md.md)
+- [Item 23 - 27](/effectiveTypeScript/sixth.md)
 
 ## React
 
 - [React](/react/react.md)
 
-- [React-With-JSX](/react/react_deep.md)
+- [With-JSX](/react/react_deep.md)
+
+- [Component](/react/react_component.md)
+
+- [State](/react/react_state.md)
 
 ## Test-Driven-Developement
 

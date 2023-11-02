@@ -173,3 +173,100 @@ pluck(albums, 'recordingType'); // RecordingType[]
 - `문자열을 남발하여 선언된` 코드를 피하자.
 - 변수의 범위를 보다 정확하게 표현하고 싶을땐 `문자열 리터럴 타입의 유니온`을 사용하자
 - 객체의 속성이름을 함수 매개변수로 받을 때는 `string`보다 `keyof T`를 사용하자
+
+### Item 34 부정확한 타입보다는 미완성 타입을 사용하기
+
+- 타입 선언을 작성하다가 코드의 동작을 더 구체적으로 또는 덜 구체적으로 모델링하게 되는 상황
+
+- 타입선언의 정밀도를 높이는 일에는 주의를 기울이자
+
+```ts
+interface Point {
+  type: 'Point';
+  coordinates: number[];
+}
+
+interface LineString {
+  type: 'LineString';
+  coordinates: number[][];
+}
+
+interface Polygon {
+  type: 'Polygon';
+  coordinates: number[][];
+}
+
+type Geometry = Point | LineString | Polygon;
+
+type GeoPosition = [number, number];
+
+interface Point {
+  type: 'Point';
+  coordinates: GeoPositiong;
+}
+
+//타입 선언을 세밀하게 만들고자 했지만 타입이 부정확해졌다.
+
+//다른 예제 Lisp과 비슷한 언어의 타입선언
+
+type Expression1 = any;
+type Expression2 = number | string | any[];
+
+const tests: Expression2[] = [
+  10,
+  'red',
+  true,
+  ['+', 10, 5],
+  ['case', ['>', 20, 10], 'red', 'blue', 'green'],
+  ['rgb', 255, 0, 127, 0],
+];
+
+type FnName = '+' | '-' | '*' | '/' | '>' | '<' | 'case' | 'rgb';
+
+type CallExpression = [FnName, ...any[]];
+
+type Expression3 = number | string | CallExpression;
+
+//---
+
+type Expression4 = number | string | CallExpression;
+
+type CallExpression = MathCall | CaseCall | RGBCall;
+
+interface MathCall {
+  0: '+' | '-' | '/' | '*' | '>' | '<';
+  1: Expression4;
+  2: Expression4;
+  length: 3;
+}
+
+interface CaseCall {
+  0: 'case';
+  1: Expression4;
+  2: Expression4;
+  3: Expression4;
+  length: 4 | 6 | 8 | 10 | 12 | 14 | 16; // 등등
+}
+
+interface RGBCall {
+  0: 'rgb';
+  1: Expression4;
+  2: Expression4;
+  3: Expression4;
+  length: 4;
+}
+
+// 무조건 타입을 세밀하게 나누는것이 개선은 아니다.
+```
+
+- 타입을 정제 할때, 매우 추상적인 타입(any)는 정제하는 것이 좋다. 하지만 타입이 구체적으로 정제된다고해서 정확도가 올라가지는 않는다.
+
+- 정확하게 타입을 모델링할 수 없다면, 부정확하게 모델링하지말아야한다. 또한 `any`와 `unknown`을 구별해서 사용하자
+
+- 타입 정보를 구체적으로 만들수록 오류 메세지와 자동완성 기능에 주의를 기울이자.
+
+### Item 35 데이터가 아닌, API와 명세를 보고 타입 만들기
+
+- 코드의 구석 구석까지 타입 안정성을 얻기 위해 API 또는 데이터 형식에 대한 타입 생성을 고려하자
+
+- 데이터에 드러나지 않는 예외적인 경우들이 문제가 될 수 있기 때문에 데이터보다는 명세로부터 코드를 생성하는 것이 좋다.

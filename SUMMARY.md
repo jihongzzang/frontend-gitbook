@@ -42,7 +42,11 @@
 
 - [Item 28 - 31](/effectiveTypeScript/seventh.md)
 
-- [Item 32 - 35](/effectiveTypeScript/eight.md.md)
+- [Item 32 - 35](/effectiveTypeScript/eight.md)
+
+- [Item 36 - 37](/effectiveTypeScript/ninth.md)
+
+- [Item 38 - 40](/effectiveTypeScript/tenth.md)
 
 ## React
 

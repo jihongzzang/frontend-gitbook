@@ -28,27 +28,29 @@
 
 ## Effective TypeSCript
 
-- [Item 1 - 5](/effectiveTypeScript/first.md)
+- [타입 스크립트 알아보기](/effectiveTypeScript/first.md)
 
-- [Item 6 - 10](/effectiveTypeScript/second.md)
+- [타입 시스템](/effectiveTypeScript/second.md)
 
-- [Item 11 - 15](/effectiveTypeScript/third.md)
+- [타입 시스템](/effectiveTypeScript/third.md)
 
-- [Item 16 - 18](/effectiveTypeScript/fourth.md)
+- [타입 시스템](/effectiveTypeScript/fourth.md)
 
-- [Item 19 - 22](/effectiveTypeScript/fifth.md)
+- [타입 추론](/effectiveTypeScript/fifth.md)
 
-- [Item 23 - 27](/effectiveTypeScript/sixth.md)
+- [타입 추론](/effectiveTypeScript/sixth.md)
 
-- [Item 28 - 31](/effectiveTypeScript/seventh.md)
+- [타입 설계](/effectiveTypeScript/seventh.md)
 
-- [Item 32 - 35](/effectiveTypeScript/eight.md)
+- [타입 설계](/effectiveTypeScript/eight.md)
 
-- [Item 36 - 37](/effectiveTypeScript/ninth.md)
+- [타입 설계](/effectiveTypeScript/ninth.md)
 
-- [Item 38 - 40](/effectiveTypeScript/tenth.md)
+- [any 다루기](/effectiveTypeScript/tenth.md)
 
-- [Item 41 - 43](/effectiveTypeScript/eleventh.md)
+- [any 다루기](/effectiveTypeScript/eleventh.md)
+
+- [타입 선언과 @types](/effectiveTypeScript/twelevth.md)
 
 ## React
 

@@ -54,6 +54,12 @@
 
 - [타입 선언과 @types](/effectiveTypeScript/thirteen.md)
 
+## 간단하게 서버 만들기
+
+- [Express로 간단한 서버 만들기](/express/express.md)
+
+- [Fetch API 와 CORS알아보기](/fetchCors/fetchCors.md)
+
 ## React
 
 - [React](/react/react.md)

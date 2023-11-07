@@ -52,6 +52,8 @@
 
 - [타입 선언과 @types](/effectiveTypeScript/twelevth.md)
 
+- [타입 선언과 @types](/effectiveTypeScript/thirteen.md)
+
 ## React
 
 - [React](/react/react.md)

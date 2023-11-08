@@ -54,6 +54,8 @@
 
 - [타입 선언과 @types](/effectiveTypeScript/thirteen.md)
 
+- [코드를 작성하고 실행하기](/effectiveTypeScript/fourtheen.md)
+
 ## 간단하게 서버 만들기
 
 - [Express로 간단한 서버 만들기](/express/express.md)

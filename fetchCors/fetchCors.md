@@ -114,11 +114,64 @@ Promise.race([timer(1000), timer(2000), timer(3000)]).then(function (result) {
 //'Promise.race: 1003ms'
 ```
 
-## ReableStream
+## ReadbleStream
 
-[MDN ReableStream](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch)
+- `Streams API`는 Javascript를 이용해 네트워크를 통해 전송된 데이터 스트림에 접근하여 원하는 대로 처리가 가능한 API를 제공
+
+- `Streams API`의 `ReadableStream` 인터페이스는 바이트 데이터를 읽을수 있는 스트림을 제공
+
+```ts
+//간단한 예로, 1초 간격으로 0부터 10까지의 숫자 데이터가 공급되는 스트림
+const stream = new ReadableStream({
+  start(controller) {
+    console.log('start');
+
+    let num = 0;
+
+    const interval = setInterval(() => {
+      controller.enqueue(num++);
+      if (num === 10) {
+        controller.close();
+        clearInterval(interval);
+      }
+    }, 1_000);
+  },
+});
+
+const reader = stream.getReader();
+
+reader.read().then(function print({ done, value }) {
+  if (done) return console.log('done');
+  console.log({ value });
+  reader.read().then(print);
+});
+
+// then이 아닌 await로
+while (true) {
+  const { done, value } = await reader.read();
+  if (done) {
+    console.log('done');
+    break;
+  }
+  console.log({ value });
+}
+
+// 초간단 방법
+for await (const value of stream) {
+  console.log({ value });
+}
+
+//{"value": 0}, {"value": 1}, {"value": 2} ... {"value": 9}
+
+// start()와 pull()의 차이점은 미리 준비해 놓는가 아니면 데이터를 요청량에 맞춰서 실시간으로 제공하는가에 달려 있음 필요에 맞게 사용하면됨!!
+```
+
+[MDN ReadbleStream](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+[관련 예제 코드 블로그](https://www.daleseo.com/js-readable-stream/)
 
 ## Unicode
+
+- 전 세계의 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있도록 설계된 산업 표준
 
 [Wikipedia](https://en.wikipedia.org/wiki/Unicode)
 

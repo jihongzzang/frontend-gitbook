@@ -78,7 +78,9 @@
 
 ## Test-Driven-Developement
 
-- [Testing-Library](/testinglibrary/testingLibrary.md)
+- [TDD](/testinglibrary/tdd.md)
+
+- [JEST](/testinglibrary/jest.md)
 
 - [Describe-Context-It](/testinglibrary/describeContextIt.md)
 

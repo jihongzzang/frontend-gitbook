@@ -14,7 +14,7 @@
 
 `Context`
 
-- 테스트의 대상이 놓인 상황을 설명. 테스트할 메소드에 입력할 파라미터를 설명.
+{ Green } 단- 테스트의 대상이 놓인 상황을 설명. 테스트할 메소드에 입력할 파라미터를 설명.
 
 `It`
 
@@ -50,27 +50,27 @@ function areAnagrams(first, second) {
   return Object.values(counter).every((cnt) => cnt == 0);
 }
 
-descirbe("에너그램출력", () => {
-  context("car and bike are not anagrams", () => {
-    expect(areAnagrams("car", "bike")).toBe(false);
+descirbe('에너그램출력', () => {
+  context('car and bike are not anagrams', () => {
+    expect(areAnagrams('car', 'bike')).toBe(false);
   });
 });
 
-descirbe("에너그램출력", () => {
-  context("car and arc are anagrams", () => {
-    expect(areAnagrams("car", "arc")).toBe(true);
+descirbe('에너그램출력', () => {
+  context('car and arc are anagrams', () => {
+    expect(areAnagrams('car', 'arc')).toBe(true);
   });
 });
 
-descirbe("에너그램출력", () => {
-  context("cat and dog are not anagrams", () => {
-    expect(areAnagrams("cat", "dog")).toBe(false);
+descirbe('에너그램출력', () => {
+  context('cat and dog are not anagrams', () => {
+    expect(areAnagrams('cat', 'dog')).toBe(false);
   });
 });
 
-descirbe("에너그램출력", () => {
-  context("cat and act are not anagrams", () => {
-    expect(areAnagrams("cat", "act")).toBe(true);
+descirbe('에너그램출력', () => {
+  context('cat and act are not anagrams', () => {
+    expect(areAnagrams('cat', 'act')).toBe(true);
   });
 });
 ```
@@ -81,11 +81,11 @@ descirbe("에너그램출력", () => {
 
 ```js
 test.each([
-  ["cat", "bike", false],
-  ["car", "arc", true],
-  ["cat", "dog", false],
-  ["cat", "act", true],
-])("areAnagrams(%s, %s) returns %s", (first, second, expected) => {
+  ['cat', 'bike', false],
+  ['car', 'arc', true],
+  ['cat', 'dog', false],
+  ['cat', 'act', true],
+])('areAnagrams(%s, %s) returns %s', (first, second, expected) => {
   expect(areAnagrams(first, second)).toBe(expected);
 });
 ```
@@ -95,13 +95,13 @@ test.each([
 ### describe.each() 함수
 
 ```js
-describe("areAnagrams()", () => {
+describe('areAnagrams()', () => {
   it.each([
-    ["cat", "bike", false],
-    ["car", "arc", true],
-    ["cat", "dog", false],
-    ["cat", "act", true],
-  ])("areAnagrams(%s, %s) returns %s", (first, second, expected) => {
+    ['cat', 'bike', false],
+    ['car', 'arc', true],
+    ['cat', 'dog', false],
+    ['cat', 'act', true],
+  ])('areAnagrams(%s, %s) returns %s', (first, second, expected) => {
     expect(areAnagrams(first, second)).toBe(expected);
   });
 });
@@ -121,8 +121,8 @@ function areAnagrams(
   }
 
   if (options.ignoreSpaces) {
-    first = first.replace(/ /g, "");
-    second = second.replace(/ /g, "");
+    first = first.replace(/ /g, '');
+    second = second.replace(/ /g, '');
   }
 
   const counter = {};
@@ -138,18 +138,18 @@ function areAnagrams(
 ```
 
 ```js
-example;
+//example;
 
 describe.each([
-  ["Cat", "Act"],
-  ["Save", "Vase"],
-  ["Elbow", "Below"],
-])("areAnagrams(%s, %s)", (first, second) => {
-  it("return true with ignoreCase option", () => {
+  ['Cat', 'Act'],
+  ['Save', 'Vase'],
+  ['Elbow', 'Below'],
+])('areAnagrams(%s, %s)', (first, second) => {
+  it('return true with ignoreCase option', () => {
     expect(areAnagrams(first, second, { ignoreCase: true })).toBe(true);
   });
 
-  it("return false without ignoreCase option", () => {
+  it('return false without ignoreCase option', () => {
     expect(areAnagrams(first, second)).toBe(false);
   });
 });

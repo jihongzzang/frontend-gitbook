@@ -1,4 +1,4 @@
-# Describe-Context-It, parameterized in JEST
+# Describe-Context-It, Given-When-Then
 
 ## Describe-Context-It
 
@@ -35,7 +35,7 @@
 - 빠뜨린 테스트 코드를 찾기 쉽다.
 ```
 
-## parameterized in JEST
+### parameterized in JEST
 
 ```js
 function areAnagrams(first, second) {
@@ -154,3 +154,15 @@ describe.each([
   });
 });
 ```
+
+## Given-When-Then
+
+[Given-When-Then](https://martinfowler.com/bliki/GivenWhenThen.html)
+
+- 테스트를 표현하는 스타일
+
+- 핵심 아이디어는 시나리오(또는 테스트) 작성을 세 가지 섹션
+
+  - Given : 시나리오에서 지정하는 동작을 시작하기 전의 상태를 설명
+  - When : 사용자가 지정하는 동작
+  - Then : 지정된 동작으로 인해 예상되는 변경 사항을 설명

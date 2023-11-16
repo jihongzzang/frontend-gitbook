@@ -49,7 +49,7 @@ afterAll(() => {
 [위키](https://en.wikipedia.org/wiki/Test_fixture#:~:text=A%20test%20fixture%20is%20a,electronics%2C%20software%20and%20physical%20devices.)
 [관련 문서](https://www.codium.ai/glossary/test-fixture/)
 
-### Service worker
+## Service worker
 
 - 웹 애플리케이션, 브라우저 및 네트워크(사용 가능한 경우) 사이에 있는 프록시 서버 역할을 함.
 - 오프라인에서도 서비스를 사용할 수 있도록 해줌
@@ -121,7 +121,7 @@ afterAll(() => {
 [위키](https://en.wikipedia.org/wiki/Progressive_web_app#Service_workers)
 [Chrome](https://developer.chrome.com/docs/workbox/service-worker-overview/?hl=ko)
 
-### MSW(Mock Service Worker)
+## MSW(Mock Service Worker)
 
 [MSW Official Site](https://mswjs.io/)
 
@@ -245,7 +245,7 @@ test('App ', async () => {
 - 테스트는 테스트일 뿐 이걸 정말 실제랑 똑같이 모든걸 구현해야겠다보다 효율적으로 필요한 상황에서
   적절히 활용하자. 정말 깊게 들어가버리면 사실상 서버개발이랑 다를게 없어짐.
 
-### polyfill(폴리필)
+## polyfill(폴리필)
 
 [polyfill](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill)
 

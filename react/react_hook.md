@@ -221,6 +221,8 @@ const cachedValue = useMemo(calculateValue, dependencies);
 
 - React는 특별한 이유가 없는 한 캐시된 결과를 버리지 않는다.
 
+- 루프나 조건 내에서는 호출할 수 없다.
+
 - Strict 모드에서 역시나 두번 호출됨
 
 ```tsx
@@ -274,7 +276,7 @@ const cachedFn = useCallback(fn, dependencies);
 
 - 컴포넌트의 최상위 수준 이나 자체 Hook에서만 호출할 수 있다.
 
-- 루프나 조건 내에서는 호출할 수 없습니다.
+- 루프나 조건 내에서는 호출할 수 없다.
 
 - React는 특별한 이유가 없는 한 캐시된 함수를 버리지 않는다.
 

@@ -109,8 +109,8 @@ foo.name = 'bar';
 console.log(foo.name); // 'bar'
 ```
 
+[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
 [proxy와 reflect](https://ko.javascript.info/proxy)
-
 [Typescript Handbook](https://typescript-handbook-ko.org/pages/decorators.html)
 
 => 특정 어플리케이션에서만 다루는 도메인 데이터를 프로그램 수준에 저장할 방법이 없는 한계가 있음.
@@ -193,9 +193,10 @@ import 'reflect-metadata';
 
 - 앞서서 말한 것들을 엮어서 tsyringe를 활용한 방법으로 해결해보자.
 
+[code](https://github.com/jihongzzang/react-typescript/blob/master/src/Components/ExternalStore/secondEx/index.tsx)
+
 ```tsx
 //counter store를 먼저 만들어주자
-
 import { singleton } from 'tsyringe';
 
 type Listener = () => void;
@@ -252,48 +253,6 @@ function useCouterStore() {
   }, [store, forceUpdate]);
 
   return store;
-}
-
-// Counter.tsx
-function Counter() {
-  const store = useCouterStore();
-
-  return <span>{`count: ${store.count}`}</span>;
-}
-
-// CounterController.tsx
-function CounterController() {
-  const store = useCouterStore();
-
-  const increaseCount = () => {
-    store.increase();
-  };
-
-  const decreaseCount = () => {
-    store.decrease();
-  };
-
-  return (
-    <div>
-      <button type='button' onClick={increaseCount}>
-        increase
-      </button>
-      <button type='button' onClick={decreaseCount}>
-        decrease
-      </button>
-    </div>
-  );
-}
-
-//App.tsx
-function App() {
-  return (
-    <div>
-      <Counter />
-      <Counter />
-      <CounterController />
-    </div>
-  );
 }
 ```
 

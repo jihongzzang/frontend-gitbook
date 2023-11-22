@@ -142,6 +142,27 @@ const value = useContext(SomeContext);
 나의 경우는 처음엔 state 코드들로 틀을 작성한 후에 reducer로 옮기는 작업을 선호한다.
 ```
 
+```tsx
+//나만의 커스텀 리듀서 만들기
+import { useState } from 'react';
+
+type Reducer<State, Action> = (state: State, action: Action) => State;
+
+export function useCustomReducer<State, Action>(
+  reducer: Reducer<State, Action>,
+  initialState: State
+): [State, (action: Action) => void] {
+  const [state, setState] = useState<State>(initialState);
+
+  function dispatch(action: Action) {
+    const nextState = reducer(state, action);
+    setState(nextState);
+  }
+
+  return [state, dispatch];
+}
+```
+
 ## useState와 useReducer를 비교
 
 ```text
@@ -339,6 +360,36 @@ function useRouter() {
   };
 }
 ```
+
+## useSyncExternalStore (내장 훅)
+
+```ts
+const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)
+```
+
+- 리액트의 바깥 상태도구 내부의 상태관리도구와 싱크를 맞춰주는 훅
+- 18버젼 들어서 새롭게 생김!!
+- 외부 상태의 변경사항을 관찰하고 있다가 tearing이 발생하지 않도록 상태 변경이 관찰되면 다시 렌더링을 시작
+- getSnapshot은 직전 렌더링 시점과 비교해 스토어의 상태 값이 변경되었는지를 확인하기 위해 넣는 값
+
+[useSyncExternalStore](https://react.dev/reference/react/useSyncExternalStore)
+
+- 특정 필드만 subscribe 하는 코드
+
+```tsx
+const selectedField = useSyncExternalStore(
+  store.subscribe,
+  () => store.getSnapshot().selectedField
+  //이 부분이 selector
+);
+```
+
+### concurrent feature
+
+- 렌더링 타이밍 도중 사용자의 입력과 같은 즉각적으로 UI에 적용되어야 하는 부분에 대해 우선순위를 정해 렌더링 할 수 있는 기능
+- 리액트의 내부 상태스토어는 concurrent feature에 대비해 알고리즘을 구현했지만, 외부렌더링을 사용할 경우 문제가 발생할 수도 있었음.
+
+[React Github Issue](https://github.com/reactwg/react-18/discussions/84)
 
 ## useLayoutEffect (내장 훅)
 

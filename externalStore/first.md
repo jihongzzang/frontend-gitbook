@@ -102,8 +102,6 @@
 
 [Flux](https://haruair.github.io/flux/docs/overview.html)
 
-[Redux Overview and Concepts](https://ko.redux.js.org/tutorials/essentials/part-1-overview-concepts/)
-
 - Facebook(현 Meta)에서 MVC의 대안으로 내세운 아키텍처.
 - `2-way binding`을 썼을 때 생길 수 있는 `Model`-`View`의 복잡한 관계를 겨냥해 명확히 `unidirectional data flow`를 강조
 

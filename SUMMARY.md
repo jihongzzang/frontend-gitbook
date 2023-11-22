@@ -93,5 +93,13 @@
 ## ExternalStore
 
 - [관심사의 분리, Flux](/externalStore/first.md)
+
 - [버튼을 1씩 증가 시키는 함수를 만들어보기](/externalStore/second.md)
+
 - [TSyringe를 활용한 간단한 상태관리 만들어보기](/externalStore/third.md)
+
+- [Redux와 Redux흉내내보기](/externalStore/fourth.md)
+
+- [ObejctStore와 useStore-ts를 활용한 상태관리](/externalStore/fourth.md)
+
+## WeatherAPP을 만들어보자

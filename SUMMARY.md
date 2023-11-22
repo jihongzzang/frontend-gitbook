@@ -89,3 +89,9 @@
 - [Mock With MSW](/testinglibrary/mockingWithMsw.md)
 
 - [간단하게 E2E 테스트 해보기](/testinglibrary/playwright.md)
+
+## ExternalStore
+
+- [관심사의 분리, Flux](/externalStore/first.md)
+- [버튼을 1씩 증가 시키는 함수를 만들어보기](/externalStore/second.md)
+- [TSyringe를 활용한 간단한 상태관리 만들어보기](/externalStore/third.md)

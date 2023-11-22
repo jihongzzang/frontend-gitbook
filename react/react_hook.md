@@ -37,6 +37,8 @@
 const [state, setState] = useState(initialState);
 ```
 
+[useState](https://react.dev/reference/react/useState)
+
 - 컴포넌트에 상태 변수를 추가할 수 있게 해주는 함수
 
 - 컴포넌트의 최상위 수준에서 호출
@@ -62,13 +64,15 @@ event();
 
 - 만약 객체또는 리스트 상태를 업데이트 해야하는 경우에는 기존 객체를 변경하기 보다는 상태를 교체 해야 한다.
 
-[useState](https://react.dev/reference/react/useState)
-
 ## useEffect (내장 훅)
 
 ```ts
 useEffect(setup, dependencies?)
 ```
+
+[useEffect](https://react.dev/reference/react/useEffect)
+[언제 써야할까?](https://react.dev/learn/you-might-not-need-an-effect)
+[useEffect GoodBye](https://www.youtube.com/watch?v=bGzanfKVFeU&t=1019s)
 
 - 컴포넌트를 외부의 시스템과 동기화 할 수 있게 해주는 함수
 
@@ -88,10 +92,6 @@ useEffect(setup, dependencies?)
   - 사용자 이벤트를 처리하는 데 Effects가 필요하지 않다.
 
 - 추가로 `useEffect GoodBye`라는 영상을 링크가 있는데 시간될때 한번씩들 보시기를 바란다.
-
-[useEffect](https://react.dev/reference/react/useEffect)
-[언제 써야할까?](https://react.dev/learn/you-might-not-need-an-effect)
-[useEffect GoodBye](https://www.youtube.com/watch?v=bGzanfKVFeU&t=1019s)
 
 ```ts
 //something component
@@ -117,6 +117,16 @@ useEffect(() => {
 
 ## useReducer, useContext(내장 훅)
 
+- ExternalStore Section의 Flux 부분과 연관해서 보면 더 쉽게 이해가 될 것이다.
+
+[useReducer](https://react.dev/reference/react/useReducer)
+
+[reducer 예제](https://github.com/jihongzzang/react-typescript/tree/master/src/Components/Reducer)
+
+[useContext](https://react.dev/reference/react/useContext)
+
+[context + reducer 예제](https://github.com/jihongzzang/react-typescript/tree/master/src/Components/ContextReducerRefactored)
+
 ```ts
 const [state, dispatch] = useReducer(reducer, initialArg, init?);
 const value = useContext(SomeContext);
@@ -132,7 +142,7 @@ const value = useContext(SomeContext);
 나의 경우는 처음엔 state 코드들로 틀을 작성한 후에 reducer로 옮기는 작업을 선호한다.
 ```
 
-- useState와 useReducer를 비교
+## useState와 useReducer를 비교
 
 ```text
 - 코드 사이즈
@@ -153,14 +163,6 @@ useReducer를 사용할 경우 reducer 내부에서 action에 대해 console.log
 
 reducer 로직이 컴포넌트에 종속적이지 않기에 테스트 코드를 작성하기 용이함.
 ```
-
-[useReducer](https://react.dev/reference/react/useReducer)
-
-[reducer 예제](https://github.com/jihongzzang/react-typescript/tree/master/src/Components/Reducer)
-
-[useContext](https://react.dev/reference/react/useContext)
-
-[context + reducer 예제](https://github.com/jihongzzang/react-typescript/tree/master/src/Components/ContextReducerRefactored)
 
 ## useRef (내장 훅)
 
@@ -190,6 +192,8 @@ const ref = useRef(initialValue);
 const cachedValue = useMemo(calculateValue, dependencies);
 ```
 
+[useMemo](https://react.dev/reference/react/useMemo)
+
 - 재렌더링 간의 계산 결과를 캐시
 
 - 구성 요소의 최상위 수준에서 호출
@@ -197,8 +201,6 @@ const cachedValue = useMemo(calculateValue, dependencies);
 - React는 특별한 이유가 없는 한 캐시된 결과를 버리지 않는다.
 
 - Strict 모드에서 역시나 두번 호출됨
-
-[useMemo](https://react.dev/reference/react/useMemo)
 
 ```tsx
 // 계산 비용이 많이 드는지 어떻게 알 수 있나요?
@@ -243,6 +245,8 @@ function Dropdown({ allItems, text }) {
 const cachedFn = useCallback(fn, dependencies);
 ```
 
+[useCallback](https://react.dev/reference/react/useCallback)
+
 - 재렌더링간의 함수를 메모이제이션 하게 해주는 훅
 
 - 즉, 리렌더링이 발생했을때 dependencies에 따라 비교여부를 결정하고 새로운걸 쓸지 말지를 결정함.
@@ -254,8 +258,6 @@ const cachedFn = useCallback(fn, dependencies);
 - React는 특별한 이유가 없는 한 캐시된 함수를 버리지 않는다.
 
 - Strict 모드에서 역시나 두번 호출됨
-
-[useCallback](https://react.dev/reference/react/useCallback)
 
 ```tsx
 import { memo } from 'react';

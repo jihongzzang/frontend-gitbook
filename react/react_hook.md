@@ -132,6 +132,28 @@ const value = useContext(SomeContext);
 나의 경우는 처음엔 state 코드들로 틀을 작성한 후에 reducer로 옮기는 작업을 선호한다.
 ```
 
+- useState와 useReducer를 비교
+
+```text
+- 코드 사이즈
+
+useState의 경우 컴포넌트 상단 부분에 한번만 선언하면 되는 반면, useReducer는 reducer, action을 만들어 주어야한다.
+번거롭지만 수많은 이벤트가 발생하는 경우에 reducer는 좀더 확장성이고 여러 로직코드들이 폭 넓게 퍼지는 것을 방지해줌.
+
+- 가독성
+
+비즈니스 로직이 많아질 경우 reducer를 통해 가독성을 올릴 수 있다. 상태를 업데이트 하는 부분들은 reducer라는 곳에 명확히 존재하기 때문에.
+
+- 디버깅
+
+useState의 경우 잘못사용하거나 이해도가 적을 경우 디버깅이 힘듬.. 혹여나 코드가 엄청나게 복잡해질경우 로깅이 더더욱 힘들어짐.
+useReducer를 사용할 경우 reducer 내부에서 action에 대해 console.log를 찍을 수 있기 때문에 상태 업데이트가 어떻게 되고 있는지 투명하게 볼 수 있습니다.
+
+- 테스팅
+
+reducer 로직이 컴포넌트에 종속적이지 않기에 테스트 코드를 작성하기 용이함.
+```
+
 [useReducer](https://react.dev/reference/react/useReducer)
 
 [reducer 예제](https://github.com/jihongzzang/react-typescript/tree/master/src/Components/Reducer)
@@ -161,6 +183,160 @@ const ref = useRef(initialValue);
 - 초기화를 제외하고 렌더링 중에는 읽거나 쓰지 말자
 
 - Strict 모드에서 역시나 두번 호출됨
+
+## useMemo (내장 훅)
+
+```tsx
+const cachedValue = useMemo(calculateValue, dependencies);
+```
+
+- 재렌더링 간의 계산 결과를 캐시
+
+- 구성 요소의 최상위 수준에서 호출
+
+- React는 특별한 이유가 없는 한 캐시된 결과를 버리지 않는다.
+
+- Strict 모드에서 역시나 두번 호출됨
+
+[useMemo](https://react.dev/reference/react/useMemo)
+
+```tsx
+// 계산 비용이 많이 드는지 어떻게 알 수 있나요?
+console.time('filter array');
+const visibleTodos = filterTodos(todos, tab);
+console.timeEnd('filter array'); //계산해보자.
+
+//가장 정확한 타이밍을 얻으려면 프로덕션용 앱을 빌드하고 사용자가 사용하는 것과 같은 기기에서 테스트해야함.
+
+//useMemo를 어디에나 추가해야 합니까?
+
+//앱이 이 사이트와 같고 대부분의 상호 작용이 대략적(예: 페이지 또는 전체 섹션 교체)인 경우 일반적으로 메모가 필요하지 않다.
+
+//반면에 앱이 편집기에 더 가깝고 대부분의 상호 작용이 세분화된 경우(예: 모양 이동) 메모 기능이 매우 유용할 수 있습니다.
+```
+
+```tsx
+//다른 훅의 의존성을 메모이징하기
+
+function Dropdown({ allItems, text }) {
+  const searchOptions = { matchMode: 'whole-word', text };
+
+  const visibleItems = useMemo(() => {
+    return searchItems(allItems, searchOptions);
+  }, [allItems, searchOptions]);
+}
+
+function Dropdown({ allItems, text }) {
+  const searchOptions = useMemo(() => {
+    return { matchMode: 'whole-word', text };
+  }, [text]);
+
+  const visibleItems = useMemo(() => {
+    return searchItems(allItems, searchOptions);
+  }, [allItems, searchOptions]);
+}
+```
+
+## useCallback (내장 훅)
+
+```tsx
+const cachedFn = useCallback(fn, dependencies);
+```
+
+- 재렌더링간의 함수를 메모이제이션 하게 해주는 훅
+
+- 즉, 리렌더링이 발생했을때 dependencies에 따라 비교여부를 결정하고 새로운걸 쓸지 말지를 결정함.
+
+- 컴포넌트의 최상위 수준 이나 자체 Hook에서만 호출할 수 있다.
+
+- 루프나 조건 내에서는 호출할 수 없습니다.
+
+- React는 특별한 이유가 없는 한 캐시된 함수를 버리지 않는다.
+
+- Strict 모드에서 역시나 두번 호출됨
+
+[useCallback](https://react.dev/reference/react/useCallback)
+
+```tsx
+import { memo } from 'react';
+
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
+  // ...
+});
+
+// 만약 handleSubmit 함수가 만약에 useCallback을 쓰지 않는다면, theme이 바뀌어도 매번 바뀔것이고
+
+// memo로 감싼 ShippingForm은 그냥 쓰지않은것과 별반 다르지 않다. => handleSubmit은 매번 갱신될 것이기 때문에
+// useCallback으로 감싼 handleSubmit의 경우 theme이 바뀌더라고 함수를 재사용할 것이고 불필요한 리렌더링을 방지할 수 있다.
+function ProductPage({ productId, referrer, theme }) {
+  const handleSubmit = (orderDetails) => {
+    post('/product/' + productId + '/buy', {
+      referrer,
+      orderDetails,
+    });
+  };
+
+  const handleSubmit = useCallback(
+    /* ... **/
+    [productId, referrer]
+  );
+
+  return (
+    <div className={theme}>
+      {/* ...ShippingForm will receive the same props and can skip re-rendering */}
+      <ShippingForm onSubmit={handleSubmit} />
+    </div>
+  );
+}
+```
+
+- 만약에 useCallback을 감싸기전에는 원하지 않는 방향으로 동작하고 감쌌을때 원하는 방향으로 동작한다면.. useCallback은 근본적인 해결책이 아님!! 본인의 코드를 수정하자.
+
+```tsx
+//메모된 콜백으로 부터 상태 업데이트
+
+function TodoList() {
+  const [todos, setTodos] = useState([]);
+
+  const handleAddTodo = useCallback(
+    (text) => {
+      const newTodo = { id: nextId++, text };
+      setTodos([...todos, newTodo]);
+    },
+    [todos]
+  );
+
+  const handleAddTodo = useCallback((text) => {
+    const newTodo = { id: nextId++, text };
+    setTodos((todos) => [...todos, newTodo]);
+  }, []); // 의존성 주입이 필요하지 않게 바꿀수 있음.
+}
+```
+
+```tsx
+//커스텀 훅 최적화
+
+function useRouter() {
+  const { dispatch } = useContext(RouterStateContext);
+
+  const navigate = useCallback(
+    (url) => {
+      dispatch({ type: 'navigate', url });
+    },
+    [dispatch]
+  );
+
+  const goBack = useCallback(() => {
+    dispatch({ type: 'back' });
+  }, [dispatch]);
+
+  //반환되는 모든 훅을 함수로 작성하는 것이 좋다.
+  return {
+    navigate,
+    goBack,
+  };
+}
+```
 
 ## useLayoutEffect (내장 훅)
 

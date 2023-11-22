@@ -100,6 +100,8 @@
 
 - [Redux와 Redux흉내내보기](/externalStore/fourth.md)
 
-- [ObejctStore와 useStore-ts를 활용한 상태관리](/externalStore/fourth.md)
+- [ObejctStore와 useStore-ts를 활용한 상태관리](/externalStore/fifth.md.md)
 
-## WeatherAPP을 만들어보자
+## ContextAPI를 활용하여 앱만들기
+
+- [푸드 키오스크](/contextAPI/foodkiosk.md)

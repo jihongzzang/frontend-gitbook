@@ -241,6 +241,8 @@ export default routes;
 
 ### Browser Router
 
+- React 웹 애플리케이션 개발 시 클라이언트 사이드 라우팅을 위해 라우팅 관련 컴포넌트들의 최상단에 위치시켜야 하는 컴포넌트
+- `<Router>` 컴포넌트를 래핑 한 컴포넌트
 - 브라우저의 주소창에 현재 위치를 저장하고 브라우저에 내장된 히스토리 스택을 사용하여 탐색
 
 ```tsx
@@ -342,6 +344,38 @@ function App() {
 ```
 
 개인적으로 나는 RouterProvider보다는 이런식으로 라우팅하는것을 선호함 (순수 리액트와 리액트 라우터 돔을 활용한다면)
+
+### 동작원리의 요약 전 이해해야하는 내용
+
+- `<BrowserRouter>` 컴포넌트는 `<Router>` 컴포넌트를 렌더링 할 때 props로 `history` 객체를 전달
+
+- `<Router>` 컴포넌트는 마운트 되는 순간에 props로 전달받은 `history` 객체의 프로퍼티인 `location` 객체를 자신의 `지역 상태`에 저장
+
+- `props로 전달받은 history 객체를 구독`하여 (history.listen 메소드) 브라우저의 현재 URL이 변경될 때마다 `자신의 지역 상태에 해당하는 location 객체가 새로운 location 객체로 대체`
+
+- `<Router>` 컴포넌트는 현재의 URL과 관련된 몇몇 정보들을 context로 구성해서 `<RouterContext.Provider>`를 렌더링
+
+- `Context`로 구성되는 정보로는 `match 객체`, `location 객체`, `history 객체`가 있다.
+
+- `match 객체`는 앞서 언급한 `location 객체의 정보를 바탕으로 현재 URL이 루트 URL('/')과 매치되는지 비교한 결과를 나타내는 객체`
+
+- `<RouterContext.Provider>` 컴포넌트는 다시 또 다른 Context에 해당하는 Provider 컴포넌트 `<RouterHistoryContext.Provider>`를 렌더링 하도록 구현
+
+- 최하위 `<Route>`는 `<RouterContext.Consumer>` 컴포넌트를 렌더링함으로써 `RouterContext`를 참조한다
+
+### 동작원리
+
+- 브라우저를 켜서 처음 서버에 접속하면 `<Router>` 컴포넌트의 지역 상태가 history.location 객체로 초기화된다.
+
+- `<Link>` 컴포넌트에 의해 렌더링 된 `<a> 태그를 클릭하거나 브라우저의 특정 액션`을 수행함으로써 현재 URL을 바꿀 수 있다. → 페이지 리로드 없는 내비게이션
+
+- 그러면 앞서 history 객체를 이용하여 설정해둔 구독 메커니즘에 의해 `<Router> 컴포넌트의 지역 상태인 location 객체가 새로운 것으로 변경`된다.
+
+  - 현재 URL 관련 정보를 `<Router>` 컴포넌트의 지역 상태로 관리 (현재 URL 구독)
+
+- 이로 인해 `<Router>` 컴포넌트가 리렌더링 되고, 그 결과 `RouterContext`의 값이 새로 구성되면서, 트리의 하위에 존재하는 각종 라우팅 관련 컴포넌트들이 리렌더링 된다.
+
+  - 현재 URL에 맞는 UI 렌더링
 
 ### Memory Router
 

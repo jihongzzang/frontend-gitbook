@@ -78,7 +78,7 @@
 
 - [React-Router](/react/react_router.md)
 
-- [React-Router Core](/react/react-router_core.md.md)
+- [React-Router Core](/react/react-router_core.md)
 
 ## 좌충우돌 TDD 여행기
 

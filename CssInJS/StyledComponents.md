@@ -160,6 +160,8 @@ class 에 한꺼번에 스타일을 입히는 과정이 없다.
 
 [github](https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/models/StyledComponent.ts)
 
+[styled-components와 함께하는 오픈 소스 디버깅](https://medium.com/class101/styled-components%EC%99%80-%ED%95%A8%EA%BB%98%ED%95%98%EB%8A%94-%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-%EB%94%94%EB%B2%84%EA%B9%85-336e265ac6be)
+
 ## Extending Styles
 
 ```tsx
@@ -204,5 +206,3 @@ const rotate = keyframes`
   }
 `;
 ```
-
-attr과 props 는 다음 장에서 살펴보자

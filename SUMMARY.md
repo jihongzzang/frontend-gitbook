@@ -117,3 +117,7 @@
 - [Style Basics](/CssInJS/styleBasic.md)
 
 - [CSS in JS](/CssInJS/CssInJS.md)
+
+- [StyledComponent Basic](/CssInJS/StyledComponents.md)
+
+- [StyledComponent Deep](/CssInJS/StyledComponents2.md)

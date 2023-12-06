@@ -3,7 +3,10 @@
 ## 반응형 웹 디자인(Responsive web design)
 
 [MDN](https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Responsive_Design)
+
 [css tricks](https://css-tricks.com/a-complete-guide-to-css-media-queries/)
+
+[font size 62.5%](https://www.aleksandrhovhannisyan.com/blog/62-5-percent-font-size-trick/)
 
 - 웹 페이지가 모든 화면 크기와 해상도에서 잘 렌더링되도록 하면서도 사용성을 보장하는 웹 디자인 접근 방식
 - 반응형 웹 디자인은 기술이 아닌 하나의 접근 방식

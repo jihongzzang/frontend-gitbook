@@ -124,12 +124,4 @@
 
 ## 알고리즘
 
-- [시간복잡도](/CssInJS/designSystem.md)
-
-- [Style Basics](/CssInJS/styleBasic.md)
-
-- [CSS in JS](/CssInJS/CssInJS.md)
-
-- [StyledComponent Basic](/CssInJS/StyledComponents.md)
-
-- [StyledComponent Deep](/CssInJS/StyledComponents2.md)
+- [시간복잡도](/algorithm/timeComplexity.md)

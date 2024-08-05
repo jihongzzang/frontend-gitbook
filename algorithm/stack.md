@@ -48,6 +48,16 @@ stack.push(3);
 stack.pop(); //3
 ```
 
-### reference
+## Stack의 Big-O
+
+1. Insertion : 데이터를 한번만 끝에 삽입하기 때문애 O(1)
+
+2. Delete : 데이터를 삭제할때도 최상위 데이터가 삭제되기 때문에 O(1)
+
+3. Access : 맨 위부터 순회하기 때문에 O(n)
+
+4. Search : O(n)
+
+## reference
 
 - `코딩테스트 합격자 되기, js편`

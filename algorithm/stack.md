@@ -30,7 +30,7 @@ class Stack {
     this._arr.push(item);
   }
 
-  pop(item) {
+  pop() {
     return this._arr.pop();
   }
 

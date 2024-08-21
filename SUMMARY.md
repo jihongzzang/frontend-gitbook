@@ -129,3 +129,5 @@
 - [스택](/algorithm/stack.md)
 
 - [큐](/algorithm/queue.md)
+
+- [해시](/algorithm/hash.md)

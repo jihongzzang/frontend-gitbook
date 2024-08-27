@@ -131,3 +131,5 @@
 - [큐](/algorithm/queue.md)
 
 - [해시](/algorithm/hash.md)
+
+- [트리](/algorithm/tree.md)
